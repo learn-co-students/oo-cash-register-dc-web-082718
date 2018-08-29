@@ -5,6 +5,7 @@ class CashRegister
     @total = 0
     @discount = discount
     @items = []
+    @last_transaction_total = 0
   end
 
   attr_accessor :discount, :total
@@ -17,6 +18,7 @@ class CashRegister
       end
     else
       @total += price
+      @last_transaction_total = price
       @items << food
     end
 
@@ -36,7 +38,7 @@ class CashRegister
   end
 
   def void_last_transaction
-    @total = 0 
+    @total = @total - @last_transaction_total
   end
 
 end
